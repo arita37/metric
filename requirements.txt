@@ -3,6 +3,6 @@ pandas==0.24.2
 scipy==1.3.0
 scikit-learn==0.21.2
 numexpr==2.6.8 
-
+pycm
 
 
