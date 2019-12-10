@@ -39,9 +39,7 @@ with open('requirements.txt', 'r') as f:
 long_description =  """
 
 ```
-
 Metrics for evaluating machine learning models or Data Science
-
 
 Include :
    All metrics from SKLEARN.
@@ -56,7 +54,9 @@ Include :
 
 """
 
-### Packages  ########################################################################
+
+###########################################################################################
+### Packages  #############################################################################
 packages = ["metric"] + ["metric." + p for p in find_packages("metric")]
 
 
@@ -66,11 +66,17 @@ scripts = []
 
 setup(
     name="metric",
-    version=version,
-    description="Metrics for Machine Learning evaluation  Data Science Measurement",
+    license='Apache 2.0',
+    python_requires='>=3.6.*',
     author="Kevin Noel",
     author_email="brookm291@gmail.com",
     url="https://github.com/arita37/",
+
+
+    version=version,
+    description="Metrics for Machine Learning evaluation  Data Science Measurement",
+
+
     install_requires= requirements,
     packages=packages,
     scripts=scripts,
@@ -78,9 +84,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     include_package_data=True
-
-    license='Apache 2.0',
-    python_requires='>=3.6.*',
 
 
     classifiers=[
@@ -110,8 +113,8 @@ setup(
 
 
 
-################################################################################
-################################################################################
+###########################################################################################
+###########################################################################################
 """
 
 
