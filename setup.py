@@ -3,7 +3,8 @@ import os
 import subprocess
 import sys
 
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup,Extension
+
 
 ######################################################################################
 root = os.path.abspath(os.path.dirname(__file__))
@@ -16,7 +17,7 @@ gpu_available = len(out) > 0
 
 
 ##### Version
-version ='0.5.0'
+version ='0.1.0'
 """"
 with io.open(os.path.join(root, 'nlp_architect', 'version.py'), encoding='utf8') as f:
     version_f = {}
@@ -30,7 +31,32 @@ with open("README.md", "r") as fh:
 
 
 
-### Packages  ####################################################
+with open('requirements.txt', 'r') as f:
+    requirements = f.read().splitlines()
+
+
+
+long_description =  """
+
+```
+
+Metrics for evaluating machine learning models or Data Science
+
+
+Include :
+   All metrics from SKLEARN.
+   Category based metrics.
+
+
+
+
+
+```
+
+
+"""
+
+### Packages  ########################################################################
 packages = ["metric"] + ["metric." + p for p in find_packages("metric")]
 
 
@@ -41,14 +67,43 @@ scripts = []
 setup(
     name="metric",
     version=version,
-    description="Metrics for Machine Learning evaluation, Data Science Measurement",
-    long_description_content_type='text/markdown', 
+    description="Metrics for Machine Learning evaluation  Data Science Measurement",
     author="Kevin Noel",
-    author_email="brookm291@gmail.",
+    author_email="brookm291@gmail.com",
     url="https://github.com/arita37/",
-    install_requires=[ ],
+    install_requires= requirements,
     packages=packages,
     scripts=scripts,
+
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    include_package_data=True
+
+    license='Apache 2.0',
+    python_requires='>=3.6.*',
+
+
+    classifiers=[
+          'Development Status :: 3 - Alpha',
+          'Intended Audience :: End Users/Desktop',
+          'Intended Audience :: Developers',
+          'Intended Audience :: Science/Research',
+          'License :: OSI Approved :: Apache Software License',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.6',
+          'Topic :: Scientific/Engineering',
+          'Topic :: Scientific/Engineering :: ' +
+          'Artificial Intelligence',
+          'Topic :: Software Development :: Libraries',
+          'Topic :: Software Development :: Libraries :: ' +
+          'Python Modules',
+          'Topic :: Scientific/Engineering :: Information Analysis',
+          'Environment :: Console',
+          'Environment :: Web Environment',
+          'Operating System :: POSIX',
+          'Operating System :: MacOS :: MacOS X',
+      ]
+
 )
 
 
