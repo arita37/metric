@@ -16,7 +16,7 @@ gpu_available = len(out) > 0
 
 
 ##### Version
-version ='0.3.0'
+version ='0.5.0'
 """"
 with io.open(os.path.join(root, 'nlp_architect', 'version.py'), encoding='utf8') as f:
     version_f = {}
@@ -41,7 +41,7 @@ scripts = []
 setup(
     name="metric",
     version=version,
-    description=long_description,
+    description="Metrics for Machine Learning evaluation, Data Science Measurement",
     long_description_content_type='text/markdown', 
     author="Kevin Noel",
     author_email="brookm291@gmail.",
