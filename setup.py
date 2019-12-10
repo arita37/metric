@@ -17,7 +17,7 @@ gpu_available = len(out) > 0
 
 
 ##### Version
-version ='0.1.0'
+version ='0.3.0'
 """"
 with io.open(os.path.join(root, 'nlp_architect', 'version.py'), encoding='utf8') as f:
     version_f = {}
@@ -45,6 +45,8 @@ Include :
    All metrics from SKLEARN.
    Category based metrics.
 
+
+ from metric import metric
 
 
 
@@ -83,7 +85,7 @@ setup(
 
     long_description=long_description,
     long_description_content_type="text/markdown",
-    include_package_data=True
+    include_package_data=True,
 
 
     classifiers=[
