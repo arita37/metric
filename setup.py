@@ -16,7 +16,7 @@ gpu_available = len(out) > 0
 
 
 ##### Version
-version ='13.3.0'
+version ='0.3.0'
 """"
 with io.open(os.path.join(root, 'nlp_architect', 'version.py'), encoding='utf8') as f:
     version_f = {}
@@ -31,7 +31,7 @@ with open("README.md", "r") as fh:
 
 
 ### Packages  ####################################################
-packages = ["dsa"] + ["dsa." + p for p in find_packages("dsa")]
+packages = ["metric"] + ["metric." + p for p in find_packages("metric")]
 
 
 ### CLI Scripts
@@ -39,11 +39,12 @@ scripts = []
 
 
 setup(
-    name="dsa",
+    name="metric",
     version=version,
-    description="Data Science Library, (automation, dataset shift, ..)",
+    description=long_description,
+    long_description_content_type='text/markdown', 
     author="Kevin Noel",
-    author_email="brookm291@gmail.com",
+    author_email="brookm291@gmail.",
     url="https://github.com/arita37/",
     install_requires=[ ],
     packages=packages,
