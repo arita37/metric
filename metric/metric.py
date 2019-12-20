@@ -10,7 +10,6 @@ import scipy as sci
 
 import sklearn
 
-
 """Information Retrieval metrics
 Useful Resources:
 http://www.cs.utexas.edu/~mooney/ir-course/slides/Evaluation.ppt
@@ -21,9 +20,6 @@ Learning to Rank for Information Retrieval (Tie-Yan Liu)
 
 
 """
-
-
-
 
 ###############################################################################################################
 ###############################################################################################################
@@ -41,9 +37,6 @@ http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_diff
 
 """
 from sklearn.metrics import *
-
-
-
 
 ###############################################################################################################
 ###############################################################################################################
@@ -80,10 +73,6 @@ http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_diff
 """
 from mlxtend.evaluate import *
 
-
-
-
-
 ###############################################################################################################
 ###############################################################################################################
 """
@@ -94,13 +83,9 @@ https://www.nltk.org/api/nltk.metrics.html#module-nltk.metrics.scores
 """
 
 
-
-
-
-
 ###############################################################################################################
 ###############################################################################################################
-def sk_model_eval_regression(clf, istrain=1, Xtrain=None, ytrain=None, Xval=None, yval=None):
+def show_regression_report(clf, istrain=1, Xtrain=None, ytrain=None, Xval=None, yval=None):
     if istrain:
         clf.fit(Xtrain, ytrain)
 
@@ -120,7 +105,7 @@ def sk_model_eval_regression(clf, istrain=1, Xtrain=None, ytrain=None, Xval=None
     return clf, train_y_predicted_logReg, val_y_predicted_logReg
 
 
-def sk_model_eval_classification(clf, istrain=1, Xtrain=None, ytrain=None, Xtest=None, ytest=None):
+def show_classification_report(clf, istrain=1, Xtrain=None, ytrain=None, Xtest=None, ytest=None):
     if istrain:
         print("############# Train dataset  ####################################")
         clf.fit(Xtrain, ytrain)
@@ -136,29 +121,27 @@ def sk_model_eval_classification(clf, istrain=1, Xtrain=None, ytrain=None, Xtest
     return clf, {"ytest_pred": ytest_pred}
 
 
-def sk_metrics_eval(clf, Xtest, ytest, cv=1, metrics=["f1_macro", "accuracy", "precision_macro", "recall_macro"] ) :
-  #
-  entries = []
-  model_name = clf.__class__.__name__
-  for metric in  metrics :
-    metric_val = cross_val_score(clf, Xtest, ytest, scoring= metric, cv=3)
-    for i, metric_val_i in enumerate(metric_val):
-       entries.append((model_name, i, metric, metric_val_i ))
-  cv_df = pd.DataFrame(entries, columns=['model_name', 'fold_idx', "metric", 'metric_val'])
-  return cv_df
+def cross_validated_metrics_report(clf, Xtest, ytest, cv=1,
+                                   metrics=["f1_macro", "accuracy", "precision_macro", "recall_macro"]):
+    #
+    entries = []
+    model_name = clf.__class__.__name__
+    for metric in metrics:
+        metric_val = cross_val_score(clf, Xtest, ytest, scoring=metric, cv=3)
+        for i, metric_val_i in enumerate(metric_val):
+            entries.append((model_name, i, metric, metric_val_i))
+    cv_df = pd.DataFrame(entries, columns=['model_name', 'fold_idx', "metric", 'metric_val'])
+    return cv_df
 
 
-def sk_model_eval(clf_list, Xtest, ytest, cv=1,
-                  metrics=["f1_macro", "accuracy", "precision", "recall"]):
+def multi_classifier_metrics_report_cv(clf_list, Xtest, ytest, cv=1,
+                                       metrics=["f1_macro", "accuracy", "precision", "recall"]):
     df_list = []
     for clf in clf_list:
         df_clf_cv = sk_metrics_eval(clf, Xtest, ytest, cv=cv, metrics=metrics)
         df_list.append(df_clf_cv)
-    
+
     return pd.concat(df_list, axis=0)
-
-
-
 
 
 ######### Ranking Metrics ############################################################################################
@@ -187,7 +170,6 @@ def ndcg_binary_at_k_batch(x_pred, heldout_batch, k=100):
     return ndcg
 
 
-
 def recall_at_k_batch(x_pred, heldout_batch, k=100):
     batch_users = x_pred.shape[0]
 
@@ -196,15 +178,10 @@ def recall_at_k_batch(x_pred, heldout_batch, k=100):
     x_pred_binary[np.arange(batch_users)[:, np.newaxis], idx[:, :k]] = True
 
     x_true_binary = (heldout_batch > 0).toarray()
-    tmp           = (np.logical_and(x_true_binary, x_pred_binary).sum(axis=1)).astype( np.float32)
-    recall        = tmp / np.minimum(k, x_true_binary.sum(axis=1))
+    tmp = (np.logical_and(x_true_binary, x_pred_binary).sum(axis=1)).astype(np.float32)
+    recall = tmp / np.minimum(k, x_true_binary.sum(axis=1))
     recall[np.isnan(recall)] = 0
     return recall
-
-
-
-
-
 
 
 ###############################################################################################################
@@ -397,20 +374,12 @@ def ndcg_at_k(r, k, method=0):
     return dcg_at_k(r, k, method) / dcg_max
 
 
-
 def ztest():
-	pass
+    pass
+
 
 if __name__ == "__main__":
-     ztest()
-
-
-
-
-
-
-
-
+    ztest()
 
 """
 
