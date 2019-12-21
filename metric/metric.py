@@ -145,7 +145,7 @@ def multi_classifier_metrics_report_cv(clf_list, Xtest, ytest, cv=1,
 
 
 ######### Ranking Metrics ############################################################################################
-def ndcg_binary_at_k_batch(x_pred, heldout_batch, k=100):
+def batch_binary_ndcg(x_pred, heldout_batch, k=100):
     """
     normalized discounted cumulative gain@k for binary relevance
     ASSUMPTIONS: all the 0's in heldout_data indicat 0 relevance
@@ -170,7 +170,7 @@ def ndcg_binary_at_k_batch(x_pred, heldout_batch, k=100):
     return ndcg
 
 
-def recall_at_k_batch(x_pred, heldout_batch, k=100):
+def batch_recall(x_pred, heldout_batch, k=100):
     batch_users = x_pred.shape[0]
 
     idx = bn.argpartition(-x_pred, k, axis=1)
@@ -233,23 +233,24 @@ def r_precision(r):
     return np.mean(r[:z[-1] + 1])
 
 
-def precision_at_k(r, k):
+def precision(r, k=-1):
     """Score is precision @ k
     Relevance is binary (nonzero is relevant).
     >>> r = [0, 0, 1]
-    >>> precision_at_k(r, 1)
+    >>> precision(r, 1)
     0.0
-    >>> precision_at_k(r, 2)
+    >>> precision(r, 2)
     0.0
-    >>> precision_at_k(r, 3)
+    >>> precision(r, 3)
     0.33333333333333331
-    >>> precision_at_k(r, 4)
+    >>> precision(r, 4)
     Traceback (most recent call last):
         File "<stdin>", line 1, in ?
     ValueError: Relevance score length < k
     Args:
         r: Relevance scores (list or numpy) in rank order
             (first element is the first item)
+        k: The last element used to compute precision
     Returns:
         Precision @ k
     Raises:
@@ -278,7 +279,7 @@ def average_precision(r):
         Average precision
     """
     r = np.asarray(r) != 0
-    out = [precision_at_k(r, k + 1) for k in range(r.size) if r[k]]
+    out = [precision(r, k + 1) for k in range(r.size) if r[k]]
     if not out:
         return 0.
     return np.mean(out)
@@ -302,24 +303,24 @@ def mean_average_precision(rs):
     return np.mean([average_precision(r) for r in rs])
 
 
-def dcg_at_k(r, k, method=0):
+def discounted_cumulative_gain(r, k=-1, method=0):
     """Score is discounted cumulative gain (dcg)
     Relevance is positive real values.  Can use binary
     as the previous methods.
     Example from
     http://www.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf
     >>> r = [3, 2, 3, 0, 0, 1, 2, 2, 3, 0]
-    >>> dcg_at_k(r, 1)
+    >>> discounted_cumulative_gain(r, 1)
     3.0
-    >>> dcg_at_k(r, 1, method=1)
+    >>> discounted_cumulative_gain(r, 1, method=1)
     3.0
-    >>> dcg_at_k(r, 2)
+    >>> discounted_cumulative_gain(r, 2)
     5.0
-    >>> dcg_at_k(r, 2, method=1)
+    >>> discounted_cumulative_gain(r, 2, method=1)
     4.2618595071429155
-    >>> dcg_at_k(r, 10)
+    >>> discounted_cumulative_gain(r, 10)
     9.6051177391888114
-    >>> dcg_at_k(r, 11)
+    >>> discounted_cumulative_gain(r, 11)
     9.6051177391888114
     Args:
         r: Relevance scores (list or numpy) in rank order
@@ -341,23 +342,23 @@ def dcg_at_k(r, k, method=0):
     return 0.
 
 
-def ndcg_at_k(r, k, method=0):
+def normalized_discounted_cumulative_gain(r, k=-1, method=0):
     """Score is normalized discounted cumulative gain (ndcg)
     Relevance is positive real values.  Can use binary
     as the previous methods.
     Example from
     http://www.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf
     >>> r = [3, 2, 3, 0, 0, 1, 2, 2, 3, 0]
-    >>> ndcg_at_k(r, 1)
+    >>> normalized_discounted_cumulative_gain(r, 1)
     1.0
     >>> r = [2, 1, 2, 0]
-    >>> ndcg_at_k(r, 4)
+    >>> normalized_discounted_cumulative_gain(r, 4)
     0.9203032077642922
-    >>> ndcg_at_k(r, 4, method=1)
+    >>> normalized_discounted_cumulative_gain(r, 4, method=1)
     0.96519546960144276
-    >>> ndcg_at_k([0], 1)
+    >>> normalized_discounted_cumulative_gain([0], 1)
     0.0
-    >>> ndcg_at_k([1], 2)
+    >>> normalized_discounted_cumulative_gain([1], 2)
     1.0
     Args:
         r: Relevance scores (list or numpy) in rank order
@@ -368,10 +369,10 @@ def ndcg_at_k(r, k, method=0):
     Returns:
         Normalized discounted cumulative gain
     """
-    dcg_max = dcg_at_k(sorted(r, reverse=True), k, method)
+    dcg_max = discounted_cumulative_gain(sorted(r, reverse=True), k, method)
     if not dcg_max:
         return 0.
-    return dcg_at_k(r, k, method) / dcg_max
+    return discounted_cumulative_gain(r, k, method) / dcg_max
 
 
 def ztest():
