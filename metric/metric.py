@@ -206,16 +206,62 @@ scoring
 ######### Multi Class ############################################################################################
 from metric.model.pycm import *
 """
+Overall Statistics : 
 
->>> y_actu = [2, 0, 2, 2, 0, 1, 1, 2, 2, 0, 1, 2] # or y_actu = numpy.array([2, 0, 2, 2, 0, 1, 1, 2, 2, 0, 1, 2])
->>> y_pred = [0, 0, 2, 1, 0, 2, 1, 0, 2, 0, 2, 2] # or y_pred = numpy.array([0, 0, 2, 1, 0, 2, 1, 0, 2, 0, 2, 2])
->>> cm = ConfusionMatrix(actual_vector=y_actu, predict_vector=y_pred) # Create CM From Data
->>> cm.classes
-[0, 1, 2]
->>> cm.table
-{0: {0: 3, 1: 0, 2: 0}, 1: {0: 0, 1: 1, 2: 2}, 2: {0: 2, 1: 1, 2: 3}}
->>> print(cm)
-
+95% CI                                                            (0.30439,0.86228)
+ACC Macro                                                         0.72222
+AUNP                                                              0.66667
+AUNU                                                              0.69444
+Bennett S                                                         0.375
+CBA                                                               0.47778
+CSI                                                               0.17778
+Chi-Squared                                                       6.6
+Chi-Squared DF                                                    4
+Conditional Entropy                                               0.95915
+Cramer V                                                          0.5244
+Cross Entropy                                                     1.59352
+F1 Macro                                                          0.56515
+F1 Micro                                                          0.58333
+Gwet AC1                                                          0.38931
+Hamming Loss                                                      0.41667
+Joint Entropy                                                     2.45915
+KL Divergence                                                     0.09352
+Kappa                                                             0.35484
+Kappa 95% CI                                                      (-0.07708,0.78675)
+Kappa No Prevalence                                               0.16667
+Kappa Standard Error                                              0.22036
+Kappa Unbiased                                                    0.34426
+Lambda A                                                          0.16667
+Lambda B                                                          0.42857
+Mutual Information                                                0.52421
+NIR                                                               0.5
+Overall ACC                                                       0.58333
+Overall CEN                                                       0.46381
+Overall J                                                         (1.225,0.40833)
+Overall MCC                                                       0.36667
+Overall MCEN                                                      0.51894
+Overall RACC                                                      0.35417
+Overall RACCU                                                     0.36458
+P-Value                                                           0.38721
+PPV Macro                                                         0.56667
+PPV Micro                                                         0.58333
+Pearson C                                                         0.59568
+Phi-Squared                                                       0.55
+RCI                                                               0.34947
+RR                                                                4.0
+Reference Entropy                                                 1.5
+Response Entropy                                                  1.48336
+SOA1(Landis & Koch)                                               Fair
+SOA2(Fleiss)                                                      Poor
+SOA3(Altman)                                                      Fair
+SOA4(Cicchetti)                                                   Poor
+SOA5(Cramer)                                                      Relatively Strong
+SOA6(Matthews)                                                    Weak
+Scott PI                                                          0.34426
+Standard Error                                                    0.14232
+TPR Macro                                                         0.61111
+TPR Micro                                                         0.58333
+Zero-one Loss                                                     5
 
 """
 
