@@ -8,22 +8,20 @@ http://hal.archives-ouvertes.fr/docs/00/72/67/60/PDF/07-busa-fekete.pdf
 Learning to Rank for Information Retrieval (Tie-Yan Liu)
 
 
+
 https://scikit-learn.org/stable/modules/classes.html
 
-'accuracy_score', 'adjusted_mutual_info_score', 'adjusted_rand_score', 'auc', 'average_precision_score', 'balanced_accuracy_score', 'calinski_harabaz_score', 'calinski_harabasz_score', 'check_scoring', 'classification_report', 'cluster', 'cohen_kappa_score', 'completeness_score', 'confusion_matrix', 'consensus_score', 'coverage_error', 'davies_bouldin_score', 'euclidean_distances', 'explained_variance_score', 'f1_score', 'fbeta_score', 'fowlkes_mallows_score', 'get_scorer', 'hamming_loss', 'hinge_loss', 'homogeneity_completeness_v_measure', 'homogeneity_score', 'jaccard_score', 'jaccard_similarity_score', 'label_ranking_average_precision_score', 'label_ranking_loss', 'log_loss', 'make_scorer', 'matthews_corrcoef', 'max_error', 'mean_absolute_error', 'mean_squared_error', 'mean_squared_log_error', 'median_absolute_error', 'multilabel_confusion_matrix', 'mutual_info_score', 'normalized_mutual_info_score', 'pairwise_distances', 'pairwise_distances_argmin', 'pairwise_distances_argmin_min', 'pairwise_distances_chunked', 'pairwise_kernels', 'precision_recall_curve', 'precision_recall_fscore_support', 'precision_score', 'r2_score', 'recall_score', 'roc_auc_score', 'roc_curve', 'SCORERS', 'silhouette_samples', 'silhouette_score', 'v_measure_score', 'zero_one_loss', 'brier_score_loss'
-
 http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_difference
-
-
-
-http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_difference
-
 
 https://www.nltk.org/api/nltk.metrics.html#module-nltk.metrics.scores
 
 
-"""
 
+https://github.com/keras-team/keras/blob/master/keras/metrics.py
+
+
+
+"""
 import copy
 import math
 import os
@@ -34,6 +32,8 @@ import pandas as pd
 import scipy as sci
 
 import sklearn
+
+
 
 
 ###############################################################################################################
@@ -126,13 +126,13 @@ silhouette_samples(X, labels , metric  )	Compute the Silhouette Coefficient for 
 v_measure_score(labels_true, labels_pred)	V-measure cluster labeling given a ground truth.
 
 
-Biclustering metrics	
+##### Biclustering metrics	
 
 consensus_score(a, b , similarity  )	The similarity of two sets of biclusters.
 
 
 
-Pairwise metrics	
+##### Pairwise metrics	
 
 pairwise.additive_chi2_kernel(X , Y  )	Computes the additive chi-squared kernel between observations in X and Y
 pairwise.chi2_kernel(X , Y, gamma  )	Computes the exponential chi-squared kernel X and Y.
@@ -200,6 +200,24 @@ scoring
 
 
 
+
+
+
+######### Multi Class ############################################################################################
+from metric.model.pycm import *
+"""
+
+>>> y_actu = [2, 0, 2, 2, 0, 1, 1, 2, 2, 0, 1, 2] # or y_actu = numpy.array([2, 0, 2, 2, 0, 1, 1, 2, 2, 0, 1, 2])
+>>> y_pred = [0, 0, 2, 1, 0, 2, 1, 0, 2, 0, 2, 2] # or y_pred = numpy.array([0, 0, 2, 1, 0, 2, 1, 0, 2, 0, 2, 2])
+>>> cm = ConfusionMatrix(actual_vector=y_actu, predict_vector=y_pred) # Create CM From Data
+>>> cm.classes
+[0, 1, 2]
+>>> cm.table
+{0: {0: 3, 1: 0, 2: 0}, 1: {0: 0, 1: 1, 2: 2}, 2: {0: 2, 1: 1, 2: 3}}
+>>> print(cm)
+
+
+"""
 
 
 
