@@ -66,14 +66,13 @@ setup(
     name="metric",
     license='Apache 2.0',
     python_requires='>=3.6.*',
-    author="Kevin Noel",
+    author="Kevin Noel, Imad E. Bekkouch",
     author_email="brookm291@gmail.com",
     url="https://github.com/arita37/",
 
 
     version=version,
     description="Metrics for Machine Learning evaluation  Data Science Measurement",
-
 
     install_requires= requirements,
     packages=packages,
