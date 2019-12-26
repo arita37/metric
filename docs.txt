@@ -6,6 +6,7 @@ from metric.metric import *
 ##### Classification metrics	
 	
 accuracy_score(y_true, y_pred,...)	Accuracy classification score.
+<<<<<<< HEAD
 auc(x, y)	Compute Area Under the Curve (AUC) using the trapezoidal rule
 average_precision_score(y_true, y_score)	Compute average precision (AP) from prediction scores
 balanced_accuracy_score(y_true, y_pred)	Compute the balanced accuracy
@@ -30,11 +31,38 @@ recall_score(y_true, y_pred,...)	Compute the recall
 roc_auc_score(y_true, y_score,...)	Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores.
 roc_curve(y_true, y_score,...)	Compute Receiver operating characteristic (ROC)
 zero_one_loss(y_true, y_pred,...)	Zero-one classification loss.
+=======
+auc(x,y)	Compute Area Under the Curve (AUC) using the trapezoidal rule
+average_precision_score(y_true,y_score)	Compute average precision (AP) from prediction scores
+balanced_accuracy_score(y_true,y_pred)	Compute the balanced accuracy
+brier_score_loss(y_true,y_prob,...)	Compute the Brier score.
+classification_report(y_true,y_pred)	Build a text report showing the main classification metrics
+cohen_kappa_score(y1,y2,...)	Cohen’s kappa: a statistic that measures inter-annotator agreement.
+confusion_matrix(y_true,y_pred,...)	Compute confusion matrix to evaluate the accuracy of a classification.
+dcg_score(y_true,y_score , k, ...  )	Compute Discounted Cumulative Gain.
+f1_score(y_true,y_pred,...)	Compute the F1 score, also known as balanced F-score or F-measure
+fbeta_score(y_true,y_pred, beta,...)	Compute the F-beta score
+hamming_loss(y_true,y_pred,...)	Compute the average Hamming loss.
+hinge_loss(y_true, pred_decision,...)	Average hinge loss (non-regularized)
+jaccard_score(y_true,y_pred,...)	Jaccard similarity coefficient score
+log_loss(y_true,y_pred , eps, ...  )	Log loss, aka logistic loss or cross-entropy loss.
+matthews_corrcoef(y_true,y_pred,...)	Compute the Matthews correlation coefficient (MCC)
+multilabel_confusion_matrix(y_true, ...)	Compute a confusion matrix for each class or sample
+ndcg_score(y_true,y_score , k, ...  )	Compute Normalized Discounted Cumulative Gain.
+precision_recall_curve(y_true, ...)	Compute precision-recall pairs for different probability thresholds
+precision_recall_fscore_support(...)	Compute precision, recall, F-measure and support for each class
+precision_score(y_true,y_pred,...)	Compute the precision
+recall_score(y_true,y_pred,...)	Compute the recall
+roc_auc_score(y_true,y_score,...)	Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores.
+roc_curve(y_true,y_score,...)	Compute Receiver operating characteristic (ROC)
+zero_one_loss(y_true,y_pred,...)	Zero-one classification loss.
+>>>>>>> 2512236299700a838cd449f57cccdb80d655bea1
 
 
 	
 ##### Regression metrics	
 	
+<<<<<<< HEAD
 explained_variance_score(y_true, y_pred)	Explained variance regression score function
 max_error(y_true, y_pred)	max_error metric calculates the maximum residual error.
 mean_absolute_error(y_true, y_pred)	Mean absolute error regression loss
@@ -45,14 +73,32 @@ r2_score(y_true, y_pred,...)	R^2 (coefficient of determination) regression scor
 mean_poisson_deviance(y_true, y_pred)	Mean Poisson deviance regression loss.
 mean_gamma_deviance(y_true, y_pred)	Mean Gamma deviance regression loss.
 mean_tweedie_deviance(y_true, y_pred)	Mean Tweedie deviance regression loss.
+=======
+explained_variance_score(y_true,y_pred)	Explained variance regression score function
+max_error(y_true,y_pred)	max_error metric calculates the maximum residual error.
+mean_absolute_error(y_true,y_pred)	Mean absolute error regression loss
+mean_squared_error(y_true,y_pred,...)	Mean squared error regression loss
+mean_squared_log_error(y_true,y_pred)	Mean squared logarithmic error regression loss
+median_absolute_error(y_true,y_pred)	Median absolute error regression loss
+r2_score(y_true,y_pred,...)	R^2 (coefficient of determination) regression score function.
+mean_poisson_deviance(y_true,y_pred)	Mean Poisson deviance regression loss.
+mean_gamma_deviance(y_true,y_pred)	Mean Gamma deviance regression loss.
+mean_tweedie_deviance(y_true,y_pred)	Mean Tweedie deviance regression loss.
+>>>>>>> 2512236299700a838cd449f57cccdb80d655bea1
 
 
 	
 ##### Multilabel ranking metrics	
 	
+<<<<<<< HEAD
 coverage_error(y_true, y_score,...)	Coverage error measure
 label_ranking_average_precision_score(...)	Compute ranking-based average precision
 label_ranking_loss(y_true, y_score)	Compute Ranking loss measure
+=======
+coverage_error(y_true,y_score,...)	Coverage error measure
+label_ranking_average_precision_score(...)	Compute ranking-based average precision
+label_ranking_loss(y_true,y_score)	Compute Ranking loss measure
+>>>>>>> 2512236299700a838cd449f57cccdb80d655bea1
 
 
 	
@@ -85,6 +131,7 @@ consensus_score(a, b , similarity  )	The similarity of two sets of biclusters.
 	
 Pairwise metrics	
 	
+<<<<<<< HEAD
 pairwise.additive_chi2_kernel(X , Y  )	Computes the additive chi-squared kernel between observations in X and Y
 pairwise.chi2_kernel(X , Y, gamma  )	Computes the exponential chi-squared kernel X and Y.
 pairwise.cosine_similarity(X , Y, ...  )	Compute cosine similarity between samples in X and Y.
@@ -109,6 +156,32 @@ pairwise_distances(X , Y, metric, ...  )	Compute the distance matrix from a v
 pairwise_distances_argmin(X, Y,...)	Compute minimum distances between one point and a set of points.
 pairwise_distances_argmin_min(X, Y)	Compute minimum distances between one point and a set of points.
 pairwise_distances_chunked(X , Y, ...  )	Generate a distance matrix chunk by chunk with optional reduction
+=======
+pairwise.additive_chi2_kernel(X ,y  )	Computes the additive chi-squared kernel between observations in X and Y
+pairwise.chi2_kernel(X ,y, gamma  )	Computes the exponential chi-squared kernel X and Y.
+pairwise.cosine_similarity(X ,y, ...  )	Compute cosine similarity between samples in X and Y.
+pairwise.cosine_distances(X ,y  )	Compute cosine distance between samples in X and Y.
+pairwise.distance_metrics()	Valid metrics for pairwise_distances.
+pairwise.euclidean_distances(X ,y, ...  )	Considering the rows of X (and Y=X) as vectors, compute the distance matrix between each pair of vectors.
+pairwise.haversine_distances(X ,y  )	Compute the Haversine distance between samples in X and Y
+pairwise.kernel_metrics()	Valid metrics for pairwise_kernels
+pairwise.laplacian_kernel(X ,y, gamma  )	Compute the laplacian kernel between X and Y.
+pairwise.linear_kernel(X ,y, ...  )	Compute the linear kernel between X and Y.
+pairwise.manhattan_distances(X ,y, ...  )	Compute the L1 distances between the vectors in X and Y.
+pairwise.nan_euclidean_distances(X)	Calculate the euclidean distances in the presence of missing values.
+pairwise.pairwise_kernels(X ,y, ...  )	Compute the kernel between arrays X and optional array Y.
+pairwise.polynomial_kernel(X ,y, ...  )	Compute the polynomial kernel between X and Y.
+pairwise.rbf_kernel(X ,y, gamma  )	Compute the rbf (gaussian) kernel between X and Y.
+pairwise.sigmoid_kernel(X ,y, ...  )	Compute the sigmoid kernel between X and Y.
+pairwise.paired_euclidean_distances(X,y)	Computes the paired euclidean distances between X and Y
+pairwise.paired_manhattan_distances(X,y)	Compute the L1 distances between the vectors in X and Y.
+pairwise.paired_cosine_distances(X,y)	Computes the paired cosine distances between X and Y
+pairwise.paired_distances(X,y , metric  )	Computes the paired distances between X and Y.
+pairwise_distances(X ,y, metric, ...  )	Compute the distance matrix from a vector array X and optional Y.
+pairwise_distances_argmin(X,y,...)	Compute minimum distances between one point and a set of points.
+pairwise_distances_argmin_min(X,y)	Compute minimum distances between one point and a set of points.
+pairwise_distances_chunked(X ,y, ...  )	Generate a distance matrix chunk by chunk with optional reduction
+>>>>>>> 2512236299700a838cd449f57cccdb80d655bea1
 	
 
 ```

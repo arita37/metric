@@ -17,7 +17,7 @@ gpu_available = len(out) > 0
 
 
 ##### Version
-version ='0.3.0'
+version ='0.10.0'
 """"
 with io.open(os.path.join(root, 'nlp_architect', 'version.py'), encoding='utf8') as f:
     version_f = {}
@@ -35,26 +35,22 @@ with open('requirements.txt', 'r') as f:
     requirements = f.read().splitlines()
 
 
+with open('docs.txt', 'r') as f:
+    docs = f.read()
+
 
 long_description =  """
-
-```
 Metrics for evaluating machine learning models or Data Science
 
 Include :
    All metrics from SKLEARN.
    Category based metrics.
-
-
- from metric import metric
-
-
-
-
-```
-
+########################################################################
 
 """
+
+long_description += docs
+
 
 
 ###########################################################################################

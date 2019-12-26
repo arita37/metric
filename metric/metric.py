@@ -8,22 +8,20 @@ http://hal.archives-ouvertes.fr/docs/00/72/67/60/PDF/07-busa-fekete.pdf
 Learning to Rank for Information Retrieval (Tie-Yan Liu)
 
 
+
 https://scikit-learn.org/stable/modules/classes.html
 
-'accuracy_score', 'adjusted_mutual_info_score', 'adjusted_rand_score', 'auc', 'average_precision_score', 'balanced_accuracy_score', 'calinski_harabaz_score', 'calinski_harabasz_score', 'check_scoring', 'classification_report', 'cluster', 'cohen_kappa_score', 'completeness_score', 'confusion_matrix', 'consensus_score', 'coverage_error', 'davies_bouldin_score', 'euclidean_distances', 'explained_variance_score', 'f1_score', 'fbeta_score', 'fowlkes_mallows_score', 'get_scorer', 'hamming_loss', 'hinge_loss', 'homogeneity_completeness_v_measure', 'homogeneity_score', 'jaccard_score', 'jaccard_similarity_score', 'label_ranking_average_precision_score', 'label_ranking_loss', 'log_loss', 'make_scorer', 'matthews_corrcoef', 'max_error', 'mean_absolute_error', 'mean_squared_error', 'mean_squared_log_error', 'median_absolute_error', 'multilabel_confusion_matrix', 'mutual_info_score', 'normalized_mutual_info_score', 'pairwise_distances', 'pairwise_distances_argmin', 'pairwise_distances_argmin_min', 'pairwise_distances_chunked', 'pairwise_kernels', 'precision_recall_curve', 'precision_recall_fscore_support', 'precision_score', 'r2_score', 'recall_score', 'roc_auc_score', 'roc_curve', 'SCORERS', 'silhouette_samples', 'silhouette_score', 'v_measure_score', 'zero_one_loss', 'brier_score_loss'
-
 http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_difference
-
-
-
-http://rasbt.github.io/mlxtend/api_subpackages/mlxtend.evaluate/#proportion_difference
-
 
 https://www.nltk.org/api/nltk.metrics.html#module-nltk.metrics.scores
 
 
-"""
 
+https://github.com/keras-team/keras/blob/master/keras/metrics.py
+
+
+
+"""
 import copy
 import math
 import os
@@ -36,6 +34,8 @@ import scipy as sci
 import sklearn
 
 
+
+
 ###############################################################################################################
 def metrics_report(y_true, y_pred, y_pred_proba=None,
                                    metrics=["f1_macro", "accuracy", "precision_macro", "recall_macro"]):
@@ -46,6 +46,25 @@ def metrics_report(y_true, y_pred, y_pred_proba=None,
         entries.append((metric, metric_val))
     cv_df = pd.DataFrame(entries, columns=["metric", 'metric_val'])
     return cv_df
+
+
+
+def docs():
+  """
+    Generate All the methods from scratch
+
+  """  
+  from util_inspect import * 
+  metric_mod = Module(name_or_path="metric.metric") 
+  
+  l_fun  = metric_mod.get_functions() 
+  l_class = metric_mod.get_classes() 
+  l_all = {*l_fun, **l_class}
+  for k,x in l_all():
+    print(k)
+
+
+
 
 
                                        
@@ -126,13 +145,13 @@ silhouette_samples(X, labels , metric  )	Compute the Silhouette Coefficient for 
 v_measure_score(labels_true, labels_pred)	V-measure cluster labeling given a ground truth.
 
 
-Biclustering metrics	
+##### Biclustering metrics	
 
 consensus_score(a, b , similarity  )	The similarity of two sets of biclusters.
 
 
 
-Pairwise metrics	
+##### Pairwise metrics	
 
 pairwise.additive_chi2_kernel(X , Y  )	Computes the additive chi-squared kernel between observations in X and Y
 pairwise.chi2_kernel(X , Y, gamma  )	Computes the exponential chi-squared kernel X and Y.
@@ -200,6 +219,70 @@ scoring
 
 
 
+
+
+
+######### Multi Class ############################################################################################
+from metric.model.pycm import *
+"""
+Overall Statistics : 
+
+95% CI                                                            (0.30439,0.86228)
+ACC Macro                                                         0.72222
+AUNP                                                              0.66667
+AUNU                                                              0.69444
+Bennett S                                                         0.375
+CBA                                                               0.47778
+CSI                                                               0.17778
+Chi-Squared                                                       6.6
+Chi-Squared DF                                                    4
+Conditional Entropy                                               0.95915
+Cramer V                                                          0.5244
+Cross Entropy                                                     1.59352
+F1 Macro                                                          0.56515
+F1 Micro                                                          0.58333
+Gwet AC1                                                          0.38931
+Hamming Loss                                                      0.41667
+Joint Entropy                                                     2.45915
+KL Divergence                                                     0.09352
+Kappa                                                             0.35484
+Kappa 95% CI                                                      (-0.07708,0.78675)
+Kappa No Prevalence                                               0.16667
+Kappa Standard Error                                              0.22036
+Kappa Unbiased                                                    0.34426
+Lambda A                                                          0.16667
+Lambda B                                                          0.42857
+Mutual Information                                                0.52421
+NIR                                                               0.5
+Overall ACC                                                       0.58333
+Overall CEN                                                       0.46381
+Overall J                                                         (1.225,0.40833)
+Overall MCC                                                       0.36667
+Overall MCEN                                                      0.51894
+Overall RACC                                                      0.35417
+Overall RACCU                                                     0.36458
+P-Value                                                           0.38721
+PPV Macro                                                         0.56667
+PPV Micro                                                         0.58333
+Pearson C                                                         0.59568
+Phi-Squared                                                       0.55
+RCI                                                               0.34947
+RR                                                                4.0
+Reference Entropy                                                 1.5
+Response Entropy                                                  1.48336
+SOA1(Landis & Koch)                                               Fair
+SOA2(Fleiss)                                                      Poor
+SOA3(Altman)                                                      Fair
+SOA4(Cicchetti)                                                   Poor
+SOA5(Cramer)                                                      Relatively Strong
+SOA6(Matthews)                                                    Weak
+Scott PI                                                          0.34426
+Standard Error                                                    0.14232
+TPR Macro                                                         0.61111
+TPR Micro                                                         0.58333
+Zero-one Loss                                                     5
+
+"""
 
 
 
