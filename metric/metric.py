@@ -48,6 +48,25 @@ def metrics_report(y_true, y_pred, y_pred_proba=None,
     return cv_df
 
 
+
+def docs():
+  """
+    Generate All the methods from scratch
+
+  """  
+  from util_inspect import * 
+  metric_mod = Module(name_or_path="metric.metric") 
+  
+  l_fun  = metric_mod.get_functions() 
+  l_class = metric_mod.get_classes() 
+  l_all = {*l_fun, **l_class}
+  for k,x in l_all():
+    print(k)
+
+
+
+
+
                                        
 ###############################################################################################################
 from sklearn.metrics import *
