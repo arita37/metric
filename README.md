@@ -5,13 +5,23 @@ Include :
    Category based metrics.
 
 
+WORK IN PROGRESS  :
+
+
+DESIGN CHOICE :
+  Functional, numpy-like
+
+
+
+
+
 
 Usage
 
 
-from metric import metric
+import metric
 
-metric.
+metric.myMetricName...)
 
 
 
